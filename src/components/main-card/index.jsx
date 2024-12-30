@@ -9,9 +9,9 @@ function LocationPill() {
 
     if (city !== "") {
         return (
-            <div className="w-fit h-10 bg-brand-color rounded-3xl flex justify-center items-center">
-                <img src={locationIcon} className="h-6 ml-4"></img>
-                <span className="ml-3 mr-5 text-white ">{city}</span>
+            <div className="w-fit h-9 bg-brand-color rounded-3xl flex justify-center items-center">
+                <img src={locationIcon} className="h-5 ml-3"></img>
+                <span className="ml-3 mr-5 text-sm text-white ">{city}</span>
             </div>
         );
     }
@@ -49,7 +49,7 @@ function DayAndDate() {
     return (
         <div className="text-white">
             <h1 className="text-4xl">{days[new Date().getDay()]}</h1>
-            <p className="mt-2">{date}</p>
+            <p className="mt-2 text-sm">{date}</p>
         </div>
     );
 }
@@ -61,8 +61,8 @@ function Degrees(props) {
 
     return (
         <div className="text-white mb-6">
-            <h1 className="text-6xl">{Math.floor(temp)}&deg; C</h1>
-            <p className="text-base mt-2 ">
+            <h1 className="text-5xl">{Math.floor(temp)}&deg; C</h1>
+            <p className="text-sm mt-2 ">
                 High: {Math.floor(temp_max)}&nbsp;&nbsp;&nbsp;&nbsp;Low:{" "}
                 {Math.floor(temp_min)}
             </p>
@@ -81,20 +81,21 @@ function WeatherCondition(props) {
         <div className="text-white w-full flex flex-col items-end justify-end">
             <img
                 alt="weather icon"
-                className="h-60 -mt-6 -mr-2"
+                className="h-48 "
                 src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
             ></img>
-            <h2 className="text-5xl -mt-8 mb-1">{main}</h2>
-            <p className="text-lg">Feels like {feels_like}</p>
+            <h2 className="text-4xl -mt-6 mb-1">{main}</h2>
+            <p className="">Feels like {feels_like}</p>
         </div>
     );
 }
 
 export default function MainCard() {
     const data = useContext(DataContext);
+    console.log(data);
 
     return (
-        <div className="bg-sec-color w-full h-80 rounded-3xl p-5 grid grid-cols-[1fr_1fr]">
+        <div className="bg-sec-color w-full h-72 rounded-3xl p-6 grid grid-cols-[1fr_1fr]">
             <div className="flex flex-col justify-between">
                 <LocationPill />
                 <DayAndDate />

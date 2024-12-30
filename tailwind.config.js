@@ -7,8 +7,13 @@ export default {
             "sec-color": "rgb(14, 20, 33)",
             "white": "#FFFFFF",
             "brand-color": "rgb(116, 43, 236)",
+            
         },
-        extend: {},
+        extend: {
+            backgroundImage:{
+                'custom-radial': 'radial-gradient(circle, rgba(22, 40, 80, 1) 0%, rgba(18, 26, 45, 1) 100%)',
+            }
+        },
     },
     plugins: [],
 };

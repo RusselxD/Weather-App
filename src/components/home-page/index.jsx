@@ -7,14 +7,14 @@ import HighlightCard from "../highlight-card";
 import OtherCitiesPanel from "../other-cities-panel";
 export default function Home() {
     return (
-        <div className="h-full grid grid-cols-[5rem_1fr_0.9fr]">
+        <div className="h-full grid grid-cols-[5rem_0.9fr_1fr]">
             <NavBar />
-            <div className="pl-8 flex flex-col justify-between">
+            <div className="pl-12 flex flex-col justify-between">
                 <SearchBar />
                 <MainCard />
                 <ForecastCard />
             </div>
-            <div className="">
+            <div className="pl-12 flex flex-col justify-end">
                 <HighlightCard />
                 <OtherCitiesPanel />
             </div>
