@@ -1,5 +1,5 @@
 import humidityImg from "../../assets/humidity.png";
-import pressureImg from "../../assets/pressure.png";
+import feelsLikeImg from "../../assets/feels-like.png";
 import cloudinessImg from "../../assets/cloudiness.png";
 import visibilityImg from "../../assets/visibility.png";
 import windSpeedImg from "../../assets/wind-speed.png";
@@ -23,7 +23,7 @@ function Highlight(props) {
 export default function HighlightCard() {
     const labels = [
         "Humidity",
-        "Pressure",
+        "Feels Like",
         "Cloudiness",
         "Visibility",
         "Wind Speed",
@@ -31,7 +31,7 @@ export default function HighlightCard() {
     ];
     const sources = [
         humidityImg,
-        pressureImg,
+        feelsLikeImg,
         cloudinessImg,
         visibilityImg,
         windSpeedImg,
@@ -41,7 +41,7 @@ export default function HighlightCard() {
     const data = useContext(DataContext);
 
     const {
-        main: { humidity, pressure },
+        main: { humidity, feels_like },
         clouds: { all },
         visibility,
         wind: { speed, deg },
@@ -62,7 +62,7 @@ export default function HighlightCard() {
 
     const datas = [
         `${humidity}%`,
-        `${pressure} hPa`,
+        `${Math.round(feels_like)}° C`,
         `${all}%`,
         `${visibility / 1000} km`,
         `${speed} m/s`,
@@ -72,9 +72,10 @@ export default function HighlightCard() {
     return (
         <div
             style={{ height: "20rem" }}
-            className="bg-highlight-card-gradient px-6 py-4 w-full rounded-3xl grid grid-rows-[2.5rem_1fr] border border-white">
-            <h1 className="text-white m-0 text-lg border border-white">Today Highlight</h1>
-            <div className=" grid grid-cols-[1fr_1fr] grid-rows-[1fr_1fr_1fr] gap-4 border border-white">
+            className="bg-highlight-card-gradient px-6 py-4 w-full rounded-3xl grid grid-rows-[2.5rem_1fr]"
+        >
+            <h1 className="text-white m-0 text-lg">Today Highlight</h1>
+            <div className=" grid grid-cols-[1fr_1fr] grid-rows-[1fr_1fr_1fr] gap-4">
                 {labels.map((l, i) => (
                     <Highlight
                         key={i}

@@ -16,7 +16,7 @@ function TomorrowForecast(props) {
 
     return (
         <div className="bg-forecast-gradient mt-2 mr-5 rounded-3xl grid grid-cols-[0.8fr_1fr]">
-            <div className="border border-white flex flex-col justify-center pl-3">
+            <div className=" flex flex-col justify-center pl-3">
                 <h1 className="text-white">Tomorrow</h1>
                 <p
                     style={{ color: "rgb(100, 100, 100)" }}
