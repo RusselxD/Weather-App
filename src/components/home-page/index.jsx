@@ -14,7 +14,7 @@ export default function Home() {
                 <MainCard />
                 <ForecastCard />
             </div>
-            <div className="pl-12 flex flex-col justify-end">
+            <div className="pl-12 flex flex-col justify-between">
                 <HighlightCard />
                 <OtherCitiesPanel />
             </div>

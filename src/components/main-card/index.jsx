@@ -48,7 +48,7 @@ function DayAndDate() {
 
     return (
         <div className="text-white">
-            <h1 className="text-4xl">{days[new Date().getDay()]}</h1>
+            <h1 className="text-3xl">{days[new Date().getDay()]}</h1>
             <p className="mt-2 text-sm">{date}</p>
         </div>
     );
@@ -61,10 +61,10 @@ function Degrees(props) {
 
     return (
         <div className="text-white mb-6">
-            <h1 className="text-5xl">{Math.floor(temp)}&deg; C</h1>
-            <p className="text-sm mt-2 ">
-                High: {Math.floor(temp_max)}&nbsp;&nbsp;&nbsp;&nbsp;Low:{" "}
-                {Math.floor(temp_min)}
+            <h1 className="text-4xl">{Math.round(temp)}&deg; C</h1>
+            <p className="text-sm mt-1 ">
+                High: {Math.round(temp_max)}&nbsp;&nbsp;&nbsp;&nbsp;Low:{" "}
+                {Math.round(temp_min)}
             </p>
         </div>
     );
@@ -78,21 +78,20 @@ function WeatherCondition(props) {
     } = props.data;
 
     return (
-        <div className="text-white w-full flex flex-col items-end justify-end">
+        <div className="text-white object-contain w-full flex flex-col items-end justify-end">
             <img
                 alt="weather icon"
                 className="h-48 "
                 src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
             ></img>
             <h2 className="text-4xl -mt-6 mb-1">{main}</h2>
-            <p className="">Feels like {feels_like}</p>
+            <p className="">Feels like {Math.round(feels_like)}&deg; C</p>
         </div>
     );
 }
 
 export default function MainCard() {
     const data = useContext(DataContext);
-    console.log(data);
 
     return (
         <div className="bg-sec-color w-full h-72 rounded-3xl p-6 grid grid-cols-[1fr_1fr]">

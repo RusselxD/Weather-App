@@ -3,7 +3,7 @@ export default function SearchBar() {
         <input
             type="text"
             placeholder="Search city..."
-            className="bg-sec-color h-14 w-3/4
+            className="bg-sec-color h-12 w-3/4
             px-7 rounded-3xl text-white"
         ></input>
     );

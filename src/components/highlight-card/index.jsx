@@ -12,9 +12,9 @@ function Highlight(props) {
     return (
         <div className="w-full h-full bg-sec-color rounded-2xl">
             <h1 className="text-white text-sm pl-3 pt-2">{props.label}</h1>
-            <div className="flex">
+            <div className="flex items-center">
                 <img src={props.source} className="h-7 mt-1 ml-4"></img>
-                <p className="text-white ml-10 text-2xl">{props.data}</p>
+                <p className="text-white ml-10 text-xl">{props.data}</p>
             </div>
         </div>
     );
@@ -62,7 +62,7 @@ export default function HighlightCard() {
 
     const datas = [
         `${humidity}%`,
-        pressure,
+        `${pressure} hPa`,
         `${all}%`,
         `${visibility / 1000} km`,
         `${speed} m/s`,
