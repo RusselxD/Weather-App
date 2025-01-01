@@ -1,14 +1,13 @@
+import homeIcon from "../../assets/home.png";
+
 export default function NavBar() {
     return (
-        <nav className="bg-sec-color w-20 h-full rounded-2xl">
-            <div className="p-4 mb-5">
-                <img src="https://via.placeholder.com/150"></img>
-            </div>
-            <div className="p-3 px-4">
-                <img className="mb-6" src="https://via.placeholder.com/150"></img>
-                <img className="mb-6" src="https://via.placeholder.com/150"></img>
-                <img className="mb-6" src="https://via.placeholder.com/150"></img>
-            </div>
+        <nav className="bg-sec-color w-20 h-full rounded-2xl overflow-hidden">
+            <img
+                style={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+                className="mb-6 p-6 w-full aspect-square"
+                src={homeIcon}
+            ></img>
         </nav>
     );
 }
