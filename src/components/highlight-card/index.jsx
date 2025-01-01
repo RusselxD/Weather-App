@@ -10,7 +10,7 @@ import { DataContext } from "../../App";
 
 function Highlight(props) {
     return (
-        <div className="w-full h-full bg-sec-color rounded-2xl">
+        <div className="w-full h-full bg-sec-color rounded-2xl ">
             <h1 className="text-white text-sm pl-3 pt-2">{props.label}</h1>
             <div className="flex items-center">
                 <img src={props.source} className="h-7 mt-1 ml-4"></img>
@@ -72,9 +72,9 @@ export default function HighlightCard() {
     return (
         <div
             style={{ height: "20rem" }}
-            className="bg-custom-radial px-6 py-4 w-full rounded-3xl grid grid-rows-[2.5rem_1fr]">
-            <h1 className="text-white m-0 text-lg">Today Highlight</h1>
-            <div className=" grid grid-cols-[1fr_1fr] grid-rows-[1fr_1fr_1fr] gap-4">
+            className="bg-highlight-card-gradient px-6 py-4 w-full rounded-3xl grid grid-rows-[2.5rem_1fr] border border-white">
+            <h1 className="text-white m-0 text-lg border border-white">Today Highlight</h1>
+            <div className=" grid grid-cols-[1fr_1fr] grid-rows-[1fr_1fr_1fr] gap-4 border border-white">
                 {labels.map((l, i) => (
                     <Highlight
                         key={i}

@@ -54,11 +54,11 @@ export default function OtherCitiesPanel() {
             style={{ height: "19.5rem" }}
             className="pl-8 w-full rounded-3xl mt-5 grid grid-rows-[2.5rem_1fr]"
         >
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center border border-white">
                 <h4 className="text-white text-lg">Other Cities</h4>
                 <ShowAllButton />
             </div>
-            <div className="pt-5 grid grid-cols-[1fr_1fr] grid-rows-[1fr_1fr] gap-y-5 gap-x-10">
+            <div className="pt-5 grid grid-cols-[1fr_1fr] grid-rows-[1fr_1fr] gap-y-5 gap-x-10 border border-white">
                 {defaultCitiesData.map((city, i) => (
                     <CityCard key={i} data={city} />
                 ))}

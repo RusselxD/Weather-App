@@ -6,6 +6,7 @@ export const DataContext = createContext();
 export const CityContext = createContext();
 
 export const OtherCitiesContext = createContext();
+export const ForecastContext = createContext();
 
 function App() {
     const API_KEY = import.meta.env.VITE_KEY;
@@ -13,22 +14,27 @@ function App() {
     const [data, setData] = useState(null);
     const [coords, setCoords] = useState("");
     const [cities, setCities] = useState([]);
+    const [forecastData, setForecastData] = useState([]);
 
-    async function getData(coords) {
+    async function getWeatherData(coords) {
         const dataRes = await fetch(
             `https://api.openweathermap.org/data/2.5/weather?lat=${coords.latitude}&lon=${coords.longitude}&appid=${API_KEY}&units=metric`
         );
 
         const weatherData = await dataRes.json();
         setData(weatherData);
+    }
 
+    async function getCityName(coords) {
         const coordsRes = await fetch(
             `https://api.openweathermap.org/geo/1.0/reverse?lat=${coords.latitude}&lon=${coords.longitude}&limit=5&appid=${API_KEY}`
         );
 
         const coordsData = await coordsRes.json();
         setCoords(coordsData[0].name);
+    }
 
+    async function getOtherCitiesData() {
         const defaultCities = ["Manila", "London", "New York", "Melbourne"];
 
         const citiesPromises = defaultCities.map(async (city) => {
@@ -53,11 +59,64 @@ function App() {
                 max: temp_max,
                 iconCode: icon,
             };
-
         });
 
         const citiesData = await Promise.all(citiesPromises);
         setCities(citiesData);
+    }
+
+    // This algorithm works by grouping arrays of objects that contains forecast data
+    // with their respective days, calculates the average temperature and gets the
+    // icon code and index of the day.
+    // Then adds the accumulated data for the day to the filteredData array.
+    function formatForecastData(forecasts) {
+        let filteredData = [];
+
+        let i = 0;
+        while (i < forecasts.length) {
+            let prevDay = new Date(forecasts[i].dt * 1000).getDay();
+
+            let tempSum = forecasts[i].main.temp;
+            let days = 1;
+
+            while (
+                i < forecasts.length - 1 &&
+                new Date(forecasts[i + 1].dt * 1000).getDay() === prevDay
+            ) {
+                tempSum += forecasts[i + 1].main.temp;
+                days++;
+                i++;
+
+                prevDay = new Date(forecasts[i].dt * 1000).getDay();
+            }
+
+            filteredData.push({
+                condition: forecasts[i].weather[0].description,
+                day: prevDay,
+                avgTemp: Math.round(tempSum / days),
+                iconCode: forecasts[i].weather[0].icon,
+            });
+
+            i++;
+        }
+
+        return filteredData;
+    }
+
+    async function getForecastData(coords) {
+        const forecastRes = await fetch(
+            `https://api.openweathermap.org/data/2.5/forecast?lat=${coords.latitude}&lon=${coords.longitude}&appid=${API_KEY}&units=metric`
+        );
+
+        const forecastData = await forecastRes.json();
+        setForecastData(formatForecastData(forecastData.list));
+    }
+
+    function getData(coords) {
+        getWeatherData(coords);
+        getCityName(coords);
+        getOtherCitiesData();
+        getForecastData(coords);
     }
 
     const success = (position) => {
@@ -72,12 +131,19 @@ function App() {
         navigator.geolocation.getCurrentPosition(success, error);
     }, []);
 
-    if (data !== null && coords !== "" && cities.length === 4) {
+    if (
+        data !== null &&
+        coords !== "" &&
+        cities.length === 4 &&
+        forecastData.length > 0
+    ) {
         return (
             <DataContext.Provider value={data}>
                 <CityContext.Provider value={coords}>
                     <OtherCitiesContext.Provider value={cities}>
-                        <Home />
+                        <ForecastContext.Provider value={forecastData}>
+                            <Home />
+                        </ForecastContext.Provider>
                     </OtherCitiesContext.Provider>
                 </CityContext.Provider>
             </DataContext.Provider>

@@ -47,7 +47,7 @@ function DayAndDate() {
     }, ${new Date().getFullYear()}`;
 
     return (
-        <div className="text-white">
+        <div className="text-white border border-white">
             <h1 className="text-3xl">{days[new Date().getDay()]}</h1>
             <p className="mt-2 text-sm">{date}</p>
         </div>
@@ -60,7 +60,7 @@ function Degrees(props) {
     } = props.data;
 
     return (
-        <div className="text-white mb-6">
+        <div className="text-white mb-6 border border-white">
             <h1 className="text-4xl">{Math.round(temp)}&deg; C</h1>
             <p className="text-sm mt-1 ">
                 High: {Math.round(temp_max)}&nbsp;&nbsp;&nbsp;&nbsp;Low:{" "}
@@ -78,10 +78,10 @@ function WeatherCondition(props) {
     } = props.data;
 
     return (
-        <div className="text-white object-contain w-full flex flex-col items-end justify-end">
+        <div className="text-white object-contain w-full flex flex-col items-end justify-end border border-white">
             <img
                 alt="weather icon"
-                className="h-48 "
+                className="h-48"
                 src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
             ></img>
             <h2 className="text-4xl -mt-6 mb-1">{main}</h2>
@@ -95,12 +95,12 @@ export default function MainCard() {
 
     return (
         <div className="bg-sec-color w-full h-72 rounded-3xl p-6 grid grid-cols-[1fr_1fr]">
-            <div className="flex flex-col justify-between">
-                <LocationPill />
-                <DayAndDate />
-                <Degrees data={data} />
+            <div className="flex flex-col justify-between h-full border border-white">
+                <LocationPill/>
+                <DayAndDate/>
+                <Degrees data={data}/>
             </div>
-            <div>
+            <div className="border border-white">
                 <WeatherCondition data={data} />
             </div>
         </div>

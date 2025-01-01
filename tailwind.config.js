@@ -11,7 +11,8 @@ export default {
         },
         extend: {
             backgroundImage:{
-                'custom-radial': 'radial-gradient(circle, rgba(22, 40, 80, 1) 0%, rgba(18, 26, 45, 1) 100%)',
+                'highlight-card-gradient': 'radial-gradient(circle, rgba(22, 40, 80, 1) 0%, rgba(18, 26, 45, 1) 100%)',
+                'forecast-gradient': 'linear-gradient(45deg, rgba(14,20,33,1) 0%, rgba(29,50,95,1) 50%, rgba(14,20,33,1) 100%)',
             }
         },
     },
