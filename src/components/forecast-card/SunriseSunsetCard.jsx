@@ -2,7 +2,7 @@ function TimeDisplay(props) {
     const { label, time, td = "" } = props.data;
 
     return (
-        <div className="py-2 px-4  w-full h-full flex flex-col justify-between">
+        <div className="py-2 px-4  w-full h-full flex flex-col justify-between border border-white">
             <h3>{label}</h3>
             <div className="grid grid-cols-[1fr_0.3fr] items-end">
                 <h1 style={{ fontSize: "1.35rem" }} className=" text-white ">

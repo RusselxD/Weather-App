@@ -23,9 +23,9 @@ function DayForecastStrip(props) {
  
  export default function NextDaysForecast(props) {
      return (
-         <div className="grid grid-rows-[0.2fr_1fr]">
+         <div className="grid grid-rows-[0.2fr_1fr] -mt-2 border border-white">
              <h1 className="text-white">Next Days</h1>
-             <div className="bg-forecast-gradient rounded-3xl mt-2 mr-5 grid grid-cols-6 gap-2 p-3">
+             <div className="bg-forecast-gradient rounded-3xl mt-2 mr-5 grid grid-cols-6 gap-2 p-3 border border-white">
                  {props.data.map((data, i) => (
                      <DayForecastStrip key={i} data={data} />
                  ))}
